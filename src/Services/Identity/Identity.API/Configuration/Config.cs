@@ -14,9 +14,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                 new ApiResource("orders", "Orders Service"),
                 new ApiResource("basket", "Basket Service"),
                 new ApiResource("marketing", "Marketing Service"),
-                new ApiResource("locations", "Locations Service"),
-                new ApiResource("mobileshoppingagg", "Mobile Shopping Aggregator"),
-                new ApiResource("webshoppingagg", "Web Shopping Aggregator")
+                new ApiResource("locations", "Locations Service")
             };
         }
 
@@ -54,15 +52,14 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                         "orders",
                         "basket",
                         "locations",
-                        "marketing",
-                        "webshoppingagg"
+                        "marketing"
                     }
                 },
                 new Client
                 {
                     ClientId = "xamarin",
                     ClientName = "eShop Xamarin OpenId Client",
-                    AllowedGrantTypes = GrantTypes.Hybrid,                    
+                    AllowedGrantTypes = GrantTypes.Hybrid,
                     //Used to retrieve the access token on the back channel.
                     ClientSecrets =
                     {
@@ -81,8 +78,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                         "orders",
                         "basket",
                         "locations",
-                        "marketing",
-                        "mobileshoppingagg"
+                        "marketing"
                     },
                     //Allow requesting refresh tokens for long lived API access
                     AllowOfflineAccess = true,
@@ -118,8 +114,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                         "orders",
                         "basket",
                         "locations",
-                        "marketing",
-                        "webshoppingagg"
+                        "marketing"
                     },
                 },
                 new Client
@@ -151,8 +146,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                         "orders",
                         "basket",
                         "locations",
-                        "marketing",
-                        "webshoppingagg"
+                        "marketing"
                     },
                 },
                 new Client
@@ -162,7 +156,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { $"{clientsUrl["LocationsApi"]}/swagger/oauth2-redirect.html" },
+                    RedirectUris = { $"{clientsUrl["LocationsApi"]}/swagger/o2c.html" },
                     PostLogoutRedirectUris = { $"{clientsUrl["LocationsApi"]}/swagger/" },
 
                     AllowedScopes =
@@ -177,7 +171,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { $"{clientsUrl["MarketingApi"]}/swagger/oauth2-redirect.html" },
+                    RedirectUris = { $"{clientsUrl["MarketingApi"]}/swagger/o2c.html" },
                     PostLogoutRedirectUris = { $"{clientsUrl["MarketingApi"]}/swagger/" },
 
                     AllowedScopes =
@@ -192,7 +186,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { $"{clientsUrl["BasketApi"]}/swagger/oauth2-redirect.html" },
+                    RedirectUris = { $"{clientsUrl["BasketApi"]}/swagger/o2c.html" },
                     PostLogoutRedirectUris = { $"{clientsUrl["BasketApi"]}/swagger/" },
 
                     AllowedScopes =
@@ -207,45 +201,14 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { $"{clientsUrl["OrderingApi"]}/swagger/oauth2-redirect.html" },
+                    RedirectUris = { $"{clientsUrl["OrderingApi"]}/swagger/o2c.html" },
                     PostLogoutRedirectUris = { $"{clientsUrl["OrderingApi"]}/swagger/" },
 
                     AllowedScopes =
                     {
                         "orders"
                     }
-                },
-                new Client
-                {
-                    ClientId = "mobileshoppingaggswaggerui",
-                    ClientName = "Mobile Shopping Aggregattor Swagger UI",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowAccessTokensViaBrowser = true,
-
-                    RedirectUris = { $"{clientsUrl["MobileShoppingAgg"]}/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"{clientsUrl["MobileShoppingAgg"]}/swagger/" },
-
-                    AllowedScopes =
-                    {
-                        "mobileshoppingagg"
-                    }
-                },
-                new Client
-                {
-                    ClientId = "webshoppingaggswaggerui",
-                    ClientName = "Web Shopping Aggregattor Swagger UI",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowAccessTokensViaBrowser = true,
-
-                    RedirectUris = { $"{clientsUrl["WebShoppingAgg"]}/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"{clientsUrl["WebShoppingAgg"]}/swagger/" },
-
-                    AllowedScopes =
-                    {
-                        "webshoppingagg"
-                    }
                 }
-
             };
         }
     }

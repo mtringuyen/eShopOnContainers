@@ -3,6 +3,7 @@ using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopOnContainers.Services.Identity.API.Configuration;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -13,29 +14,31 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Data
 {
     public class ConfigurationDbContextSeed
     {
-        public async Task SeedAsync(ConfigurationDbContext context,IConfiguration configuration)
+        public async Task SeedAsync(ConfigurationDbContext context, IConfiguration configuration)
         {
-           
             //callbacks urls from config:
-            var clientUrls = new Dictionary<string, string>();
-
-            clientUrls.Add("Mvc", configuration.GetValue<string>("MvcClient"));
-            clientUrls.Add("Spa", configuration.GetValue<string>("SpaClient"));
-            clientUrls.Add("Xamarin", configuration.GetValue<string>("XamarinCallback"));
-            clientUrls.Add("LocationsApi", configuration.GetValue<string>("LocationApiClient"));
-            clientUrls.Add("MarketingApi", configuration.GetValue<string>("MarketingApiClient"));
-            clientUrls.Add("BasketApi", configuration.GetValue<string>("BasketApiClient"));
-            clientUrls.Add("OrderingApi", configuration.GetValue<string>("OrderingApiClient"));
-            clientUrls.Add("MobileShoppingAgg", configuration.GetValue<string>("MobileShoppingAggClient"));
-            clientUrls.Add("WebShoppingAgg", configuration.GetValue<string>("WebShoppingAggClient"));
-
-            if (!context.Clients.Any())
+            var clientUrls = new Dictionary<string, string>
             {
+                {"Mvc", configuration.GetValue<string>("MvcClient")},
+                {"Spa", configuration.GetValue<string>("SpaClient")},
+                {"Xamarin", configuration.GetValue<string>("XamarinCallback")},
+                {"LocationsApi", configuration.GetValue<string>("LocationApiClient")},
+                {"MarketingApi", configuration.GetValue<string>("MarketingApiClient")},
+                {"BasketApi", configuration.GetValue<string>("BasketApiClient")},
+                {"OrderingApi", configuration.GetValue<string>("OrderingApiClient")}
+            };
+
+            if (!await context.Clients.AnyAsync())
+            {
+<<<<<<< HEAD
                 foreach (var client in Config.GetClients(clientUrls))
                 {
                     context.Clients.Add(client.ToEntity());
                 }
                 await context.SaveChangesAsync();
+=======
+                context.Clients.AddRange(Config.GetClients(clientUrls).Select(client => client.ToEntity()));
+>>>>>>> upstream/master
             }
             // Checking always for old redirects to fix existing deployments
             // to use new swagger-ui redirect uri as of v3.0.0
@@ -59,24 +62,34 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Data
                 }
             }
 
-            if (!context.IdentityResources.Any())
+            if (!await context.IdentityResources.AnyAsync())
             {
+<<<<<<< HEAD
                 foreach (var resource in Config.GetResources())
                 {
                     context.IdentityResources.Add(resource.ToEntity());
                 }
                 await context.SaveChangesAsync();
+=======
+                context.IdentityResources.AddRange(Config.GetResources().Select(resource => resource.ToEntity()));
+>>>>>>> upstream/master
             }
 
-            if (!context.ApiResources.Any())
+            if (!await context.ApiResources.AnyAsync())
             {
+<<<<<<< HEAD
                 foreach (var api in Config.GetApis())
                 {
                     context.ApiResources.Add(api.ToEntity());
                 }
 
                 await context.SaveChangesAsync();
+=======
+                context.ApiResources.AddRange(Config.GetApis().Select(api => api.ToEntity()));
+>>>>>>> upstream/master
             }
+
+            await context.SaveChangesAsync();
         }
     }
 }

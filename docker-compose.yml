@@ -6,7 +6,7 @@ services:
     image: eshop/basket.api:${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Services/Basket/Basket.API/Dockerfile    
+      dockerfile: src/Services/Basket/Basket.API/Dockerfile
     depends_on:
       - basket.data
       - identity.api
@@ -25,7 +25,7 @@ services:
     image: eshop/identity.api:${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Services/Identity/Identity.API/Dockerfile    
+      dockerfile: src/Services/Identity/Identity.API/Dockerfile
     depends_on:
       - sql.data
 
@@ -33,7 +33,16 @@ services:
     image: eshop/ordering.api:${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Services/Ordering/Ordering.API/Dockerfile    
+      dockerfile: src/Services/Ordering/Ordering.API/Dockerfile
+    depends_on:
+      - sql.data
+      - rabbitmq
+
+  ordering.backgroundtasks:
+    image: eshop/ordering.backgroundtasks:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Ordering/Ordering.BackgroundTasks/Dockerfile
     depends_on:
       - sql.data
       - rabbitmq
@@ -42,7 +51,7 @@ services:
     image: eshop/marketing.api:${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Services/Marketing/Marketing.API/Dockerfile    
+      dockerfile: src/Services/Marketing/Marketing.API/Dockerfile
     depends_on:
       - sql.data
       - nosql.data
@@ -53,7 +62,7 @@ services:
     image: eshop/webspa:${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Web/WebSPA/Dockerfile    
+      dockerfile: src/Web/WebSPA/Dockerfile
     depends_on:
       - catalog.api
       - ordering.api
@@ -65,7 +74,7 @@ services:
     image: eshop/webmvc:${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Web/WebMVC/Dockerfile    
+      dockerfile: src/Web/WebMVC/Dockerfile
     depends_on:
       - catalog.api
       - ordering.api
@@ -85,8 +94,8 @@ services:
       context: .
       dockerfile: src/Services/Payment/Payment.API/Dockerfile
     depends_on:
-      - rabbitmq    
-    
+      - rabbitmq
+
   locations.api:
     image: eshop/locations.api:${TAG:-latest}
     build:
@@ -104,43 +113,6 @@ services:
 
   basket.data:
     image: redis:alpine
-      
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
-
-  mobileshoppingapigw:
-    image: eshop/ocelotapigw:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/ApiGateways/ApiGw-Base/Dockerfile
- 
-  mobilemarketingapigw:
-    image: eshop/ocelotapigw:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/ApiGateways/ApiGw-Base/Dockerfile
- 
-  webshoppingapigw:
-    image: eshop/ocelotapigw:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/ApiGateways/ApiGw-Base/Dockerfile
-
-  webmarketingapigw:
-    image: eshop/ocelotapigw:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/ApiGateways/ApiGw-Base/Dockerfile
-
-  mobileshoppingagg:
-    image: eshop/mobileshoppingagg:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/ApiGateways/Mobile.Bff.Shopping/aggregator/Dockerfile
-
-  webshoppingagg:
-    image: eshop/webshoppingagg:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/ApiGateways/Web.Bff.Shopping/aggregator/Dockerfile
-
