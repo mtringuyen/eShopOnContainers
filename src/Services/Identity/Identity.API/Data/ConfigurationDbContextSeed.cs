@@ -30,15 +30,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Data
 
             if (!await context.Clients.AnyAsync())
             {
-<<<<<<< HEAD
-                foreach (var client in Config.GetClients(clientUrls))
-                {
-                    context.Clients.Add(client.ToEntity());
-                }
-                await context.SaveChangesAsync();
-=======
                 context.Clients.AddRange(Config.GetClients(clientUrls).Select(client => client.ToEntity()));
->>>>>>> upstream/master
             }
             // Checking always for old redirects to fix existing deployments
             // to use new swagger-ui redirect uri as of v3.0.0
@@ -64,29 +56,12 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Data
 
             if (!await context.IdentityResources.AnyAsync())
             {
-<<<<<<< HEAD
-                foreach (var resource in Config.GetResources())
-                {
-                    context.IdentityResources.Add(resource.ToEntity());
-                }
-                await context.SaveChangesAsync();
-=======
                 context.IdentityResources.AddRange(Config.GetResources().Select(resource => resource.ToEntity()));
->>>>>>> upstream/master
             }
 
             if (!await context.ApiResources.AnyAsync())
             {
-<<<<<<< HEAD
-                foreach (var api in Config.GetApis())
-                {
-                    context.ApiResources.Add(api.ToEntity());
-                }
-
-                await context.SaveChangesAsync();
-=======
                 context.ApiResources.AddRange(Config.GetApis().Select(api => api.ToEntity()));
->>>>>>> upstream/master
             }
 
             await context.SaveChangesAsync();
