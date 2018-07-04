@@ -33,6 +33,11 @@ export class ConfigurationService {
             this.storageService.store('identityUrl', this.serverSettings.identityUrl);
             this.storageService.store('orderingUrl', this.serverSettings.orderingUrl);
             this.storageService.store('marketingUrl', this.serverSettings.marketingUrl);
+<<<<<<< HEAD
+=======
+            this.storageService.store('purchaseUrl', this.serverSettings.purchaseUrl);
+            this.storageService.store('signalrHubUrl', this.serverSettings.signalrHubUrl);
+>>>>>>> upstream/dev
             this.storageService.store('activateCampaignDetailFunction', this.serverSettings.activateCampaignDetailFunction);
             this.isReady = true;
             this.settingsLoadedSource.next();

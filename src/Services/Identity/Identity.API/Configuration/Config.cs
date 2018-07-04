@@ -14,7 +14,14 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                 new ApiResource("orders", "Orders Service"),
                 new ApiResource("basket", "Basket Service"),
                 new ApiResource("marketing", "Marketing Service"),
+<<<<<<< HEAD
                 new ApiResource("locations", "Locations Service")
+=======
+                new ApiResource("locations", "Locations Service"),
+                new ApiResource("mobileshoppingagg", "Mobile Shopping Aggregator"),
+                new ApiResource("webshoppingagg", "Web Shopping Aggregator"),
+                new ApiResource("orders.signalrhub", "Ordering Signalr Hub")
+>>>>>>> upstream/dev
             };
         }
 
@@ -52,7 +59,13 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                         "orders",
                         "basket",
                         "locations",
+<<<<<<< HEAD
                         "marketing"
+=======
+                        "marketing",
+                        "webshoppingagg",
+                        "orders.signalrhub"
+>>>>>>> upstream/dev
                     }
                 },
                 new Client
@@ -114,7 +127,13 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
                         "orders",
                         "basket",
                         "locations",
+<<<<<<< HEAD
                         "marketing"
+=======
+                        "marketing",
+                        "webshoppingagg",
+                        "orders.signalrhub"
+>>>>>>> upstream/dev
                     },
                 },
                 new Client

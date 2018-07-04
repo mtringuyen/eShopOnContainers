@@ -21,7 +21,9 @@ namespace eShopOnContainers.Core.Services.Settings
         private const string AccessToken = "access_token";
         private const string IdToken = "id_token";
         private const string IdUseMocks = "use_mocks";
-        private const string IdUrlBase = "url_base";
+        private const string IdIdentityBase = "url_base";
+        private const string IdGatewayMarketingBase = "url_marketing";
+        private const string IdGatewayShoppingBase = "url_shopping";
         private const string IdUseFakeLocation = "use_fake_location";
         private const string IdLatitude = "latitude";
         private const string IdLongitude = "longitude";
@@ -33,8 +35,9 @@ namespace eShopOnContainers.Core.Services.Settings
         private readonly bool AllowGpsLocationDefault = false;
         private readonly double FakeLatitudeDefault = 47.604610d;
         private readonly double FakeLongitudeDefault = -122.315752d;
-        private readonly string UrlBaseDefault = GlobalSetting.Instance.BaseEndpoint;
-
+        private readonly string UrlIdentityDefault = GlobalSetting.Instance.BaseIdentityEndpoint;
+        private readonly string UrlGatewayMarketingDefault = GlobalSetting.Instance.BaseGatewayMarketingEndpoint;
+        private readonly string UrlGatewayShoppingDefault = GlobalSetting.Instance.BaseGatewayShoppingEndpoint;
         #endregion
 
         public string AuthAccessToken
@@ -55,10 +58,27 @@ namespace eShopOnContainers.Core.Services.Settings
             set => AppSettings.AddOrUpdateValue(IdUseMocks, value);
         }
 
-        public string UrlBase
+        public string IdentityEndpointBase
         {
+            get => GetValueOrDefault(IdIdentityBase, UrlIdentityDefault);
+            set => AddOrUpdateValue(IdIdentityBase, value);
+        }
+
+        public string GatewayShoppingEndpointBase
+        {
+            get => GetValueOrDefault(IdGatewayShoppingBase, UrlGatewayShoppingDefault);
+            set => AddOrUpdateValue(IdGatewayShoppingBase, value);
+        }
+
+        public string GatewayMarketingEndpointBase
+        {
+<<<<<<< HEAD
             get => AppSettings.GetValueOrDefault(IdUrlBase, UrlBaseDefault);
             set => AppSettings.AddOrUpdateValue(IdUrlBase, value);
+=======
+            get => GetValueOrDefault(IdGatewayMarketingBase, UrlGatewayMarketingDefault);
+            set => AddOrUpdateValue(IdGatewayMarketingBase, value);
+>>>>>>> upstream/dev
         }
 
         public bool UseFakeLocation

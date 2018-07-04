@@ -1,9 +1,8 @@
 # eShopOnContainers - Microservices Architecture and Containers based Reference Application (**BETA state** - Visual Studio 2017 and CLI environments compatible)
 Sample .NET Core reference application, powered by Microsoft, based on a simplified microservices architecture and Docker containers. <p>
 
-**NOTE ON VS 2017 VERSION NEEDED**
-
-For the code at the MASTER branch (this one), you can use VS 2017 RTM v 15.6.
+## IMPORTANT NOTES!
+**The current supported Visual Studio version for eShopOnContainers is Visual Studio 2017 15.7** ([GA/RTM since May 8th 2018](https://docs.microsoft.com/en-us/visualstudio/releasenotes/vs2017-relnotes)) or later version.
 
 For the code at the DEV branch, you need use VS 2017 RTM v 15.7 (Currently in PREVIEW state).
 
@@ -14,12 +13,10 @@ For both branches, you can also use Docker CLI (docker-compose up)
 **NEWS / ANNOUNCEMENTS**
 Do you want to be up-to-date on .NET Architecture guidance and reference apps like eShopOnContainers? --> Subscribe by "WATCHING" this new GitHub repo: https://github.com/dotnet-architecture/News
 
-## Updated for .NET Core 2.0 "wave" of technologies
-NOTE: We have migrated the whole server-side solution to .NET Core 2.0 "wave". Not just compilation but also new recommended code in EF Core 2.0, ASP.NET Core 2.0, and other new related versions.
+## Updated for .NET Core 2.0 and 2.1 "wave" of technologies
+eShopOnContainers is updated to .NET Core 2.0 and 2.1 "wave". Not just compilation but also new recommended code in EF Core, ASP.NET Core, and other new related versions.
 
 The **dockerfiles** in the solution have also been updated and now support [**Docker Multi-Stage**](https://blogs.msdn.microsoft.com/stevelasker/2017/09/11/net-and-multistage-dockerfiles/) since mid-December 2017.
-
-For a list on the new .NET Core 2.0 related implemented features, see this [blog post](https://blogs.msdn.microsoft.com/dotnet/2017/08/02/microservices-and-docker-containers-architecture-patterns-and-development-guidance/).
 
 >**PLEASE** Read our [branch guide](./branch-guide.md) to know about our branching policy
 
@@ -28,10 +25,18 @@ For a list on the new .NET Core 2.0 related implemented features, see this [blog
 >
 > This reference application proposes a simplified microservice oriented architecture implementation to introduce technologies like .NET Core with Docker containers through a comprehensive application. The chosen domain is an eShop/eCommerce but simply because it is a well-know domain by most people/developers.
 However, this sample application should not be considered as an "eCommerce reference model", at all. The implemented business domain might not be ideal from an eCommerce business point of view. It is neither trying to solve all the problems in a large, scalable and mission-critical distributed system. It is just a bootstrap for developers to easily get started in the world of Docker containers and microservices with .NET Core.
+<<<<<<< HEAD
 > <p>For example, the next step after running the solution in the local dev PC and understanding Docker containers and microservices development with .NET Core, is to select a microservice cluster/orchestrator like Kubernetes in Azure or Azure Service Fabric, both environments tested and supported by this solution.
 > Additional steps would be to move your databases to HA cloud services (like Azure SQL Database), or to implement your EventBus with Azure Service Bus or any other production ready Service Bus in the market.
 > <p>
 > <img src="img/exploring-to-production-ready.png">
+=======
+> <p>For example, the next step after running the solution in the local dev PC and understanding Docker containers and microservices development with .NET Core, is to select a microservice cluster/orchestrator like Kubernetes in Azure (AKS) or Azure Service Fabric, both environments tested and supported by this solution.
+> Additional steps would be to move your databases to HA cloud services (like Azure SQL Database), or switch your EventBus to use Azure Service Bus (instead of bare-bone RabbitMQ) or any other production ready Service Bus in the market.
+
+![image](https://user-images.githubusercontent.com/1712635/40397331-059a7ec6-5de7-11e8-8542-a597eca16fef.png)
+
+>>>>>>> upstream/dev
 > Read the planned <a href='https://github.com/dotnet/eShopOnContainers/wiki/01.-Roadmap-and-Milestones-for-future-releases'>Roadmap and Milestones for future releases of eShopOnContainers</a> within the Wiki for further info about possible new implementations and provide feedback at the  <a href='https://github.com/dotnet/eShopOnContainers/issues'>ISSUES section</a> if you'd like to see any specific scenario implemented or improved. Also, feel free to discuss on any current issue.
 
 **Architecture overview**: This reference application is cross-platform at the server and client side, thanks to .NET Core services capable of running on Linux or Windows containers depending on your Docker host, and to Xamarin for mobile apps running on Android, iOS or Windows/UWP plus any browser for the client web apps.
@@ -77,7 +82,7 @@ You can download them and start reviewing these Guides/eBooks here:
 | Architecting & Developing | Containers Lifecycle & CI/CD | App patterns with Xamarin.Forms |
 | ------------ | ------------|  ------------|
 | <a href='https://aka.ms/microservicesebook'><img src="img/ebook_arch_dev_microservices_containers_cover.png"> </a> | <a href='https://aka.ms/dockerlifecycleebook'> <img src="img/ebook_containers_lifecycle.png"> </a> | <a href='https://aka.ms/xamarinpatternsebook'> <img src="img/xamarin-enterprise-patterns-ebook-cover-small.png"> </a> |
-| <sup> <a href='https://aka.ms/microservicesebook'>**Download .PDF** (2nd Edition)</a> </sup>  | <sup> <a href='https://aka.ms/dockerlifecycleebook'>**Download** </a>  </sup> | <sup> <a href='https://aka.ms/xamarinpatternsebook'>**Download**  </a>  </sup> |
+| <sup> <a href='https://aka.ms/microservicesebook'>**Download .PDF** (v2.1 Edition)</a> </sup>  | <sup> <a href='https://aka.ms/dockerlifecycleebook'>**Download** </a>  </sup> | <sup> <a href='https://aka.ms/xamarinpatternsebook'>**Download**  </a>  </sup> |
 
 Download in other formats (**eReaders** like **MOBI**, **EPUB**) and other eBooks at the [.NET Architecture center](http://dot.net/architecture).
 

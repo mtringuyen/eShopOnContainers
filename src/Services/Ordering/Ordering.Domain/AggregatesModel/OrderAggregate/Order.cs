@@ -18,6 +18,7 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.AggregatesModel.O
         // Address is a Value Object pattern example persisted as EF Core 2.0 owned entity
         public Address Address { get; private set; }
 
+        public int? GetBuyerId => _buyerId;
         private int? _buyerId;
 
         public OrderStatus OrderStatus { get; private set; }
@@ -36,8 +37,13 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.AggregatesModel.O
 
         protected Order() { _orderItems = new List<OrderItem>(); }
 
+<<<<<<< HEAD
         public Order(string userId, Address address, int cardTypeId, string cardNumber, string cardSecurityNumber,
                 string cardHolderName, DateTime cardExpiration, int? buyerId = null, int? paymentMethodId = null)
+=======
+        public Order(string userId, string userName, Address address, int cardTypeId, string cardNumber, string cardSecurityNumber,
+                string cardHolderName, DateTime cardExpiration, int? buyerId = null, int? paymentMethodId = null) : this()
+>>>>>>> upstream/dev
         {
             _orderItems = new List<OrderItem>();
             _buyerId = buyerId;
@@ -48,7 +54,7 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.AggregatesModel.O
 
             // Add the OrderStarterDomainEvent to the domain events collection 
             // to be raised/dispatched when comitting changes into the Database [ After DbContext.SaveChanges() ]
-            AddOrderStartedDomainEvent(userId, cardTypeId, cardNumber,
+            AddOrderStartedDomainEvent(userId, userName, cardTypeId, cardNumber,
                                        cardSecurityNumber, cardHolderName, cardExpiration);
         }
 
@@ -132,6 +138,7 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.AggregatesModel.O
 
             _orderStatusId = OrderStatus.Shipped.Id;
             _description = "The order was shipped.";
+            AddDomainEvent(new OrderShippedDomainEvent(this));
         }
 
         public void SetCancelledStatus()
@@ -144,6 +151,7 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.AggregatesModel.O
 
             _orderStatusId = OrderStatus.Cancelled.Id;
             _description = $"The order was cancelled.";
+            AddDomainEvent(new OrderCancelledDomainEvent(this));
         }
 
         public void SetCancelledStatusWhenStockIsRejected(IEnumerable<int> orderStockRejectedItems)
@@ -161,10 +169,14 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.AggregatesModel.O
             }           
         }
 
-        private void AddOrderStartedDomainEvent(string userId, int cardTypeId, string cardNumber,
+        private void AddOrderStartedDomainEvent(string userId, string userName, int cardTypeId, string cardNumber,
                 string cardSecurityNumber, string cardHolderName, DateTime cardExpiration)
         {
+<<<<<<< HEAD
             var orderStartedDomainEvent = new OrderStartedDomainEvent(this, userId, cardTypeId, 
+=======
+            var orderStartedDomainEvent = new OrderStartedDomainEvent(this, userId, userName, cardTypeId,
+>>>>>>> upstream/dev
                                                                       cardNumber, cardSecurityNumber,
                                                                       cardHolderName, cardExpiration);
 

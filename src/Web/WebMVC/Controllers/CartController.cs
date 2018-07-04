@@ -73,6 +73,7 @@ namespace Microsoft.eShopOnContainers.WebMVC.Controllers
                 if (productDetails.Id != null)
                 {
                     var user = _appUserParser.Parse(HttpContext.User);
+<<<<<<< HEAD
                     var product = new BasketItem()
                     {
                         Id = Guid.NewGuid().ToString(),
@@ -83,6 +84,9 @@ namespace Microsoft.eShopOnContainers.WebMVC.Controllers
                         ProductId = productDetails.Id
                     };
                     await _basketSvc.AddItemToBasket(user, product);
+=======
+                    await _basketSvc.AddItemToBasket(user, productDetails.Id);
+>>>>>>> upstream/dev
                 }
                 return RedirectToAction("Index", "Catalog");            
             }

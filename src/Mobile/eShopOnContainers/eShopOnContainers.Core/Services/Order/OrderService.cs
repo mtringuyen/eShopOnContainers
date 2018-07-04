@@ -1,4 +1,5 @@
-﻿using eShopOnContainers.Core.Models.Basket;
+﻿using eShopOnContainers.Core.Helpers;
+using eShopOnContainers.Core.Models.Basket;
 using eShopOnContainers.Core.Models.Orders;
 using eShopOnContainers.Core.Services.RequestProvider;
 using System;
@@ -11,6 +12,11 @@ namespace eShopOnContainers.Core.Services.Order
     {
         private readonly IRequestProvider _requestProvider;
 
+<<<<<<< HEAD
+=======
+        private const string ApiUrlBase = "api/v1/o/orders";
+
+>>>>>>> upstream/dev
         public OrderService(IRequestProvider requestProvider)
         {
             _requestProvider = requestProvider;
@@ -23,11 +29,15 @@ namespace eShopOnContainers.Core.Services.Order
 
         public async Task<ObservableCollection<Models.Orders.Order>> GetOrdersAsync(string token)
         {
+<<<<<<< HEAD
             UriBuilder builder = new UriBuilder(GlobalSetting.Instance.OrdersEndpoint);
 
             builder.Path = "api/v1/orders";
 
             string uri = builder.ToString();
+=======
+            var uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewayShoppingEndpoint, ApiUrlBase);
+>>>>>>> upstream/dev
 
             ObservableCollection<Models.Orders.Order> orders =
                 await _requestProvider.GetAsync<ObservableCollection<Models.Orders.Order>>(uri, token);
@@ -40,11 +50,15 @@ namespace eShopOnContainers.Core.Services.Order
         {
             try
             {
+<<<<<<< HEAD
                 UriBuilder builder = new UriBuilder(GlobalSetting.Instance.OrdersEndpoint);
 
                 builder.Path = string.Format("api/v1/orders/{0}", orderId);
 
                 string uri = builder.ToString();
+=======
+                var uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewayShoppingEndpoint, $"{ApiUrlBase}/{orderId}");
+>>>>>>> upstream/dev
 
                 Models.Orders.Order order =
                     await _requestProvider.GetAsync<Models.Orders.Order>(uri, token);
@@ -76,13 +90,16 @@ namespace eShopOnContainers.Core.Services.Order
 
         public async Task<bool> CancelOrderAsync(int orderId, string token)
         {
+<<<<<<< HEAD
             UriBuilder builder = new UriBuilder(GlobalSetting.Instance.OrdersEndpoint);
 
             builder.Path = "api/v1/orders/cancel";
+=======
+            var uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewayShoppingEndpoint, $"{ApiUrlBase}/cancel");
+>>>>>>> upstream/dev
 
             var cancelOrderCommand = new CancelOrderCommand(orderId);
 
-            string uri = builder.ToString();
             var header = "x-requestid";
 
             try
